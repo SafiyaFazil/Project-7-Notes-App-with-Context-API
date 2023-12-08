@@ -1,0 +1,114 @@
+// import React from 'react';
+// import { Provider } from 'react-redux';
+// import { store } from './Features/NoteStore';
+// import MainPage from './Components/MainPage';
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Provider store={store}>
+//         <MainPage />
+
+//       </Provider>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+import React from "react";
+import { store } from "./Features/NotesStore";
+import { Provider } from "react-redux";
+import NotesPage from "./Components/NotesPage";
+import { AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
+import { GrNotes } from "react-icons/gr";
+import { MdTaskAlt } from "react-icons/md";
+import { BiArchiveIn } from "react-icons/bi";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link, Route, Routes } from "react-router-dom";
+import TasksPage from "./TasksPage";
+import HomePage from "./HomePage";
+import SearchPage from "./Components/SearchPage";
+
+function App(props) {
+  return (
+    <div className=" mainbox contaiiner-fluid">
+      <div className="row">
+        <div className="col-3 sidebox  ">
+          <nav className="sidebarm  p-2  mlg">
+            <div className="my-5 li  con">
+              <h3 className="mx-2   brand-name ">
+                <FaUser /> Safiya
+              </h3>
+            </div>
+
+            <hr className="text dark " />
+
+            <div className="lsit-group list-group-flush lg ">
+              <div className="list1 ">
+                {" "}
+                <Link to="/" className=" fs-4  list-group-item  py2">
+                  <AiOutlineHome />{" "}
+                  <span className="` d-none mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-inline">
+                    {"Home"}
+                  </span>
+                </Link>
+                <Link
+                  to="/SearchPage"
+                  className="mt-5 fs-4   list-group-item  py2"
+                >
+                  <AiOutlineSearch />
+                  <span className="d-none fs-4  mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-inline">
+                    {"Search"}
+                  </span>{" "}
+                </Link>
+                <Link
+                  to="/NotesPage"
+                  className=" mt-5 fs-4 list-group-item  py2"
+                >
+                  <GrNotes />
+                  <span className="d-none fs-4  mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-i nline">
+                    {"Notes"}
+                  </span>
+                </Link>
+                <Link
+                  to="/TasksPage"
+                  className=" mt-5 fs-4 list-group-item  py2"
+                >
+                  <MdTaskAlt/>
+                  <span className="d-none fs-4  mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-inline">{`Tasks`}</span>
+                </Link>
+                <a href="/" className=" mt-5 fs-4 list-group-item  py2">
+                  <BiArchiveIn/>
+                  <span className="d-none fs-4  mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-inline">
+                    {"Archive"}
+                  </span>
+                </a>
+                <a href="/" className="mt-5 fs-4 list-group-item  py2">
+                  <RiDeleteBin6Line/>
+                  <span className="d-none fs-4  mx-3 d-md-inline d-sm-inline d-lg-inline d-xl-inline">
+                    {"Bin"}
+                  </span>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <div className="container-fluid notesmainbox  col-9 ">
+          <Provider store={store}>
+            <Routes>
+              <Route path="/NotesPage" element={<NotesPage />} />
+              <Route path="/TasksPage" element={<TasksPage />} />
+              <Route path="/SearchPage" element={<SearchPage />} />
+              <Route path="/" element={<HomePage />} />
+            </Routes>
+          </Provider>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
